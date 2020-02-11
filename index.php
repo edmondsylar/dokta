@@ -8,10 +8,10 @@
      <p>
        Search for a drug or service.
      </p>
-     <form method="post" action="results.php">
+     <form method="post" action="backend/search.php">
        <div id="custom-search-input">
          <div class="input-group">
-           <input type="text" class=" search-query" placeholder="Ex. panadole....">
+           <input type="text" name="search" class=" search-query" placeholder="Ex. panadole....">
            <input type="submit" class="btn_search" value="Search">
          </div>
          <ul>
@@ -33,4 +33,4 @@
    </div>
  </div>
 
-<?php include_once "includes/foot.php"; ?>
+<?php include_once "includes/footer.php"; ?>

@@ -1,17 +1,30 @@
-<?php include_once "includes/head.php";
+<?php
+      // importing the necessary files
+      include_once "backend/config.php";
+      include_once "includes/head.php";
       include_once "includes/header.php";
+
+      $cur = new AppInit();
+      if(!isset($_GET['search'])){
+        header("Location: index.php");
+      }
+
+      $drugs = $cur->search_drug($_GET['search']);
+      $services = $cur->search_service($_GET['search']);
+
+
  ?>
  <div id="results">
    <div class="container">
      <div class="row">
        <div class="col-md-6">
-         <h4><strong>Showing results for </strong> <i>search phrase</i> </h4>
+         <h4><strong>Showing results for </strong> <i><?php echo $_GET['search'] ?></i> </h4>
        </div>
        <div class="col-md-6">
          <div class="search_bar_list">
 
-           <form action="results.php" method="post">
-             <input type="text" class="form-control" placeholder="search.....">
+           <form action="backend/search.php" method="post">
+             <input type="text" name="search" class="form-control" value="<?php echo $_GET['search'] ?>" placeholder="search.....">
              <input type="submit" value="Search">
            </form>
 
@@ -33,26 +46,16 @@
            <input type="radio" id="all" name="type_patient" value="all" checked>
            <label for="all">All</label>
            <input type="radio" id="doctors" name="type_patient" value="doctors">
-           <label for="doctors">Drugs</label>
+           <!-- <label for="doctors">Drugs</label>
            <input type="radio" id="clinics" name="type_patient" value="clinics">
-           <label for="clinics">services</label>
-         </div>
-       </li>
-       <li>
-         <h6>Layout</h6>
-         <div class="layout_view">
-           <a href="grid-list.html"><i class="icon-th"></i></a>
-           <a href="#0" class="active"><i class="icon-th-list"></i></a>
-           <a href="list-map.html"><i class="icon-map-1"></i></a>
+           <label for="clinics">services</label> -->
          </div>
        </li>
        <li>
          <h6>Sort by</h6>
          <select name="orderby" class="selectbox">
-         <option value="Closest">Closest</option>
-         <option value="Best rated">Best rated</option>
-         <option value="Men">Men</option>
-         <option value="Women">Women</option>
+         <option value="Closest">Drugs</option>
+         <option value="Best rated">services</option>
          </select>
        </li>
      </ul>
@@ -61,47 +64,75 @@
  </div>
 
  <div class="container margin_60_35">
+
    <div class="row">
      <div class="col-lg-7">
 
+       <?php if (!empty($drugs)): ?>
+         <?php foreach ($drugs as $key => $value): ?>
+           <?php $image = base64_encode($value['image']); ?>
+           <div class="strip_list wow fadeIn">
+             <a href="#0" class="wish_bt"></a>
+             <figure>
+               <a href="#"><img src="data:image/jpg;charset=utf8;base64,<?php echo $image; ?>" alt=""></a>
+             </figure>
+             <small>Drug</small>
+             <h3><?php echo $value['title'] ?></h3>
+             <p><?php echo $value['address'] ?></p>
+             <span class="rating">
+               <i class="icon_star voted"></i><i class="icon_star voted"></i>
+               <i class="icon_star voted"></i><i class="icon_star"></i>
+               <i class="icon_star"></i>
+             </span>
+             <ul>
+               <li><a href="#" onclick="onHtmlClick('Doctors', 1)" class="btn_listing">View on Map</a></li>
+               <li>
+                 <a href="#" target="_blank">Directions</a></li>
+               <li><a href="details.php?id=<?php echo $value['id'] ?>&type=drug">review</a></li>
+             </ul>
+           </div>
+         <?php endforeach; ?>
+       <?php else:?>
+         <p>No record matched your search for $_GET['search']</p>
+       <?php endif; ?>
 
-       <div class="strip_list wow fadeIn">
-         <a href="#0" class="wish_bt"></a>
-         <figure>
-           <a href="detail-page.html"><img src="http://via.placeholder.com/565x565.jpg" alt=""></a>
-         </figure>
-         <small>Psicologist</small>
-         <h3>Dr. Manzone</h3>
-         <p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cuodo....</p>
-         <span class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></span>
-         <a href="badges.html" data-toggle="tooltip" data-placement="top" data-original-title="Badge Level" class="badge_list_1"><img src="img/badges/badge_4.svg" width="15" height="15" alt=""></a>
-         <ul>
-           <li><a href="#0" onclick="onHtmlClick('Doctors', 1)" class="btn_listing">View on Map</a></li>
-           <li><a href="https://www.google.com/maps/dir//Assistance+%E2%80%93+H%C3%B4pitaux+De+Paris,+3+Avenue+Victoria,+75004+Paris,+Francia/@48.8606548,2.3348734,14z/data=!4m15!1m6!3m5!1s0x0:0xa6a9af76b1e2d899!2sAssistance+%E2%80%93+H%C3%B4pitaux+De+Paris!8m2!3d48.8568376!4d2.3504305!4m7!1m0!1m5!1m1!1s0x47e67031f8c20147:0xa6a9af76b1e2d899!2m2!1d2.3504327!2d48.8568361" target="_blank">Directions</a></li>
-           <li><a href="detail-page.html">review</a></li>
-         </ul>
-       </div>
-       <!-- /strip_list -->
+     <?php if (!empty($services)): ?>
+       <?php foreach ($services as $key => $value): ?>
+         <?php $image = base64_encode($value['image']); ?>
+         <div class="strip_list wow fadeIn">
+           <a href="#0" class="wish_bt"></a>
+           <figure>
+             <a href="#"><img src="data:image/jpg;charset=utf8;base64,<?php echo $image; ?>" alt=""></a>
+           </figure>
+           <small>Service</small>
+           <h3><?php echo $value['title'] ?></h3>
+           <p><?php echo $value['address'] ?></p>
+           <span class="rating">
+             <i class="icon_star voted"></i><i class="icon_star voted"></i>
+             <i class="icon_star voted"></i><i class="icon_star"></i>
+             <i class="icon_star"></i>
+           </span>
+           <ul>
+             <li><a href="#" onclick="onHtmlClick('Doctors', 1)" class="btn_listing">View on Map</a></li>
+             <li>
+               <a href="#" target="_blank">Directions</a></li>
+             <li><a href="details.php?id=<?php echo $value['id'] ?>&type=service">review</a></li>
+           </ul>
+         </div>
+       <?php endforeach; ?>
+   <?php else :?>
+     <p>No record matched your search for $_GET['search']</p>
+   <?php endif; ?>
 
-       <nav aria-label="" class="add_top_20">
-         <ul class="pagination pagination-sm">
-           <li class="page-item disabled">
-             <a class="page-link" href="#" tabindex="-1">Previous</a>
-           </li>
-           <li class="page-item active"><a class="page-link" href="#">1</a></li>
-           <li class="page-item"><a class="page-link" href="#">2</a></li>
-           <li class="page-item"><a class="page-link" href="#">3</a></li>
-           <li class="page-item">
-             <a class="page-link" href="#">Next</a>
-           </li>
-         </ul>
-       </nav>
-     </div>
-
-     <!-- <aside class="col-lg-5" id="sidebar">
-       <div id="map_listing" class="normal_list">
-       </div>
-     </aside> -->
+     <nav aria-label="" class="add_top_20">
+       <ul class="pagination pagination-sm">
+         <li class="page-item disabled">
+           <a class="page-link" href="#" tabindex="-1">pages</a>
+         </li>
+         <li class="page-item active"><a class="page-link" href="#">1</a></li>
+       </ul>
+     </nav>
+   </div>
 
    </div>
  </div>
