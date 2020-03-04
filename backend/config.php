@@ -48,7 +48,7 @@
       $ins = "INSERT INTO users(`email`, `password`, `names`) VALUES ('$email', '$pass', '$name')";
       if(mysqli_query($this->conn, $ins)){
 
-        header("Location: ../login.php");
+        header("Location: ../admin/");
       }else{
         echo "Something is wrong <br> ".mysqli_error($this->conn);
       }
@@ -59,7 +59,7 @@
 
       if(mysqli_query($this->conn, $add)){
 
-        header("Location: ../addDrugs.php");
+        header("Location: ../admin/drugs.php");
       }else{
         echo "somthing went wrong". mysqli_error($this->conn);
       }
@@ -71,7 +71,7 @@
 
       if(mysqli_query($this->conn, $add)){
 
-        header("Location: ../services.php");
+        header("Location: ../admin/services.php");
       }else{
 
         echo "somthing went wrong". mysqli_error($this->conn);

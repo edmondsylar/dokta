@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-3 col-6">
         <div id="logo">
-          <a href="index.html" title="Findoctor">Dokta Admin</a>
+          <a href="./home.php" title="Findoctor">Dokta Admin</a>
         </div>
       </div>
       <nav class="col-lg-9 col-6">
