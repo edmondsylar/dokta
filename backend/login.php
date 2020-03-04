@@ -4,10 +4,11 @@ $cur = new AppInit();
 
   if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
-    echo "Login attemp";
+    // echo "Login attemp";
     $email = $_POST['email'];
     $password = $_POST['password'];
     //
+    echo ($email .' &nbsp; '.$password);
     $cur->Login($email, $password);
 
   }else{

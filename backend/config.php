@@ -28,14 +28,15 @@
       $bj = mysqli_fetch_assoc($Auth);
       if($bj['id']){
         session_start();
+        // $_SESSION["loggedin"] = true;
         $_SESSION["loggedin"] = true;
         $_SESSION["email"] = $bj['email'];
         $_SESSION["name"] = $bj['names'];
 
-        header("Location: ../index.php");
+        return header("Location: ../admin/home.php");
       }else{
-        // header("Location: ../login.php");
 
+        header("Location: ../admin/index.php");
         echo mysqli_error($this->conn);
       }
 
