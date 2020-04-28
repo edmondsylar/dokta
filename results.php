@@ -79,6 +79,7 @@
              <small>Drug</small>
              <h3><?php echo $value['title'] ?></h3>
              <p><?php echo $value['address'] ?></p>
+             <p><?php echo $value['price'] ?> | shs</p>
              <span class="rating">
                <i class="icon_star voted"></i><i class="icon_star voted"></i>
                <i class="icon_star voted"></i><i class="icon_star"></i>

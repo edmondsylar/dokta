@@ -10,8 +10,9 @@ $cur = new AppInit();
     $title = $_POST['name'];
     $desc = $_POST['desc'];
     $address = $_POST['address'];
+    $price = $_POST['price'];
 
-    $cur->add_drug($title, $desc, $address, $imagename);
+    $cur->add_drug($title, $desc, $address, $imagename, $price);
 
     // $imagename;
   }else{

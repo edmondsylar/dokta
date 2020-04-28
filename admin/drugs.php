@@ -28,9 +28,16 @@
         <div class="row">
           <div class="col-md-6 col-sm-6">
             <div class="form-group">
+              <input type="text" class="form-control" id="price" name="price" placeholder="Set Proce">
+            </div>
+          </div>
+
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
               <input name="image" type="file" class="form-control" aria-required="true" required>
             </div>
           </div>
+
         </div>
         <div class="row">
           <div class="col-md-12">

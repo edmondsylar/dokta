@@ -54,8 +54,8 @@
       }
     }
 
-    function add_drug($title, $desc, $add, $image){
-      $add = "INSERT INTO drugs(`title`, `description`, `image`, `address`) VALUES ('$title', '$desc', '$image', '$add')";
+    function add_drug($title, $desc, $add, $image, $price){
+      $add = "INSERT INTO drugs(`title`, `description`, `image`, `address`, `price`) VALUES ('$title', '$desc', '$image', '$add', '$price')";
 
       if(mysqli_query($this->conn, $add)){
 
