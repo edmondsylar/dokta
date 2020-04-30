@@ -80,11 +80,11 @@
              <h3><?php echo $value['title'] ?></h3>
              <p><?php echo $value['address'] ?></p>
              <p><?php echo $value['price'] ?> | shs</p>
-             <span class="rating">
+             <!-- <span class="rating">
                <i class="icon_star voted"></i><i class="icon_star voted"></i>
                <i class="icon_star voted"></i><i class="icon_star"></i>
                <i class="icon_star"></i>
-             </span>
+             </span> -->
              <ul>
                <li><a href="#" onclick="onHtmlClick('Doctors', 1)" class="btn_listing">View on Map</a></li>
                <li>
@@ -108,11 +108,11 @@
            <small>Service</small>
            <h3><?php echo $value['title'] ?></h3>
            <p><?php echo $value['address'] ?></p>
-           <span class="rating">
+           <!-- <span class="rating">
              <i class="icon_star voted"></i><i class="icon_star voted"></i>
              <i class="icon_star voted"></i><i class="icon_star"></i>
              <i class="icon_star"></i>
-           </span>
+           </span> -->
            <ul>
              <li><a href="#" onclick="onHtmlClick('Doctors', 1)" class="btn_listing">View on Map</a></li>
              <li>

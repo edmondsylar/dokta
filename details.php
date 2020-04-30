@@ -44,15 +44,19 @@
                  <div class="col-lg-7 col-md-8">
                    <!-- <small>Primary care - Internist</small> -->
                    <h1><?php echo $value['title']; ?></h1>
-                   <span class="rating">
-                     <i class="icon_star voted"></i>
-                     <i class="icon_star voted"></i>
-                     <i class="icon_star voted"></i>
-                     <i class="icon_star voted"></i>
-                     <i class="icon_star"></i>
-                     <small>(145)</small>
 
-                   </span>
+                   <!-- new modifications here. -->
+                     <ul class="contacts">
+                       <li>
+                         <h6>Address</h6>
+                         <?php echo $value['address']; ?>
+
+                       </li>
+                       <li>
+                         <h6>Phone</h6>
+                         None Listed
+                       </li>
+                     </ul>
                    <?php if ($type == 'drug'): ?>
                      <ul class="">
                        <li class="btn_1" >
@@ -101,19 +105,9 @@
                            </form>
                        </div>
                        </li>
+
                      </ul>
                    <?php endif; ?>
-                   <ul class="contacts">
-                     <li>
-                       <h6>Address</h6>
-                       <?php echo $value['address']; ?>
-
-                     </li>
-                     <li>
-                       <h6>Phone</h6>
-                       None Listed
-                     </li>
-                   </ul>
                  </div>
                </div>
              </div>
@@ -145,3 +139,19 @@
    <?php endforeach; ?>
  <?php endif; ?>
 <?php include_once "includes/foot.php"; ?>
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript">
+
+  var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+  stripe.redirectToCheckout({
+  // Make the id field from the Checkout Session creation API response
+    // available to this file, so you can provide it as parameter here
+    // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+    sessionId: '{{CHECKOUT_SESSION_ID}}'
+  }).then(function (result) {
+    // If `redirectToCheckout` fails due to a browser or network
+    // error, display the localized error message to your customer
+    // using `result.error.message`.
+  });
+
+</script>
