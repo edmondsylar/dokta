@@ -92,10 +92,10 @@ $type = $_GET['type'];
                                " />
                               <input type="hidden" name="bid" value="219" />
                               <input type="hidden" name="currency" value="UGX" />
-                              <input type="hidden" name="amount" value="20000" />
-                              <input type="hidden" name="narrative" value="General Consultation " />
-                              <input type="hidden" name="reference" value="generalConsultation" />
-                              <input type="hidden" name="provider_reference_text" value="Consultation Payment" />
+                              <input type="hidden" name="amount" value="<?php echo $value['price']; ?>" />
+                              <input type="hidden" name="narrative" value="purchasing drug | <?php echo $value['title']; ?>" />
+                              <input type="hidden" name="reference" value="Medicine Purchase" />
+                              <input type="hidden" name="provider_reference_text" value="<?php echo $value['title']; ?>" />
                               <input type="hidden" name="account" value="100712303477" />
                               <input type="hidden" name="return" value="https://hsvug.com/services/results.php?search=" />
                               <input type="hidden" name="prefilled_payer_email_address" value="" />
