@@ -37,3 +37,4 @@
   		<div data-loader="circle-side"></div>
   	</div>
 	<main>
+	<?php session_start(); ?>

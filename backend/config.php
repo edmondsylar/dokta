@@ -19,6 +19,15 @@
       }
     }
 
+    function runQuery($query) {
+      $result = mysqli_query($this->conn,$query);
+      while($row=mysqli_fetch_assoc($result)) {
+        $resultset[] = $row;
+      }		
+      if(!empty($resultset))
+        return $resultset;
+    }
+
     function Login($email, $password){
       $passcheck = md5($password);
       $login_query = "SELECT * FROM users WHERE email='$email' AND password='$passcheck'";
@@ -42,15 +51,16 @@
 
         if($bj['id']){
           session_start();
-          // $_SESSION["loggedin"] = true;
           $_SESSION["loggedin"] = true;
           $_SESSION["email"] = $bj['email'];
-          $_SESSION["name"] = $bj['names'];
+          $_SESSION["names"] = $bj['fullname'];
 
+          // echo isset($_SESSION['loggedin']);
           return header("Location: ../index.php");
+          
       }
-      header("Location: ../admin/index.php");
-        echo mysqli_error($this->conn);
+      // header("Location: ../admin/index.php");
+      echo mysqli_error($this->conn);
     }
   }
 

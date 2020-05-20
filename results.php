@@ -12,9 +12,12 @@ if (!isset($_GET['search'])) {
 $drugs = $cur->search_drug($_GET['search']);
 $services = $cur->search_service($_GET['search']);
 
+$_SESSION['cart'] = array();
 
 ?>
-<script src="includes/functions.js"></script>
+<script src="includes/functions.js">
+  // sessionStorage.setItem('cart', [])
+</script>
 <div id="results">
   <div class="container">
     <div class="row">

@@ -8,7 +8,7 @@ $cur = new AppInit();
     $email = $_POST['email'];
     $password = $_POST['password'];
     //
-    echo ($email .' &nbsp; '.$password);
+    // echo ($email .' &nbsp; '.$password);
     $cur->Login($email, $password);
 
   }else{

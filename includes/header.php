@@ -4,7 +4,11 @@
       <div class="col-lg-3 col-6">
         <h3><a href="index.php" title="Dokta">Dokta</a>
           <span>
+          <?php if(!isset($_SESSION['loggedin'])): ?>
             <a style="font-size: 15px; color: #3F4079;" href="./admin/">Login</a>
+          <?php else: ?>
+            <a style="font-size: 15px; color: #3F4079;" href="./backend/logout.php">logout</a>
+          <?php endif;?>
           </span>
         </h3>
       </div>
