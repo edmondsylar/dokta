@@ -19,7 +19,7 @@
 							</div>
 						</form>
 					</div>
-					<p class="text-center link_bright">Do not have an account yet? <a href="#0"><strong>Register now!</strong></a></p>
+					<p class="text-center link_bright">Do not have an account yet? <a href="register.php"><strong>Register now!</strong></a></p>
 				</div>
 				<!-- /login -->
 			</div>

@@ -36,9 +36,36 @@
         return header("Location: ../admin/home.php");
       }else{
 
-        header("Location: ../admin/index.php");
-        echo mysqli_error($this->conn);
+        $client_login = "SELECT * FROM customers WHERE email='$email' AND password='$passcheck'";
+        $Auth = mysqli_query($this->conn, $client_login);
+        $bj = mysqli_fetch_assoc($Auth);
+
+        if($bj['id']){
+          session_start();
+          // $_SESSION["loggedin"] = true;
+          $_SESSION["loggedin"] = true;
+          $_SESSION["email"] = $bj['email'];
+          $_SESSION["name"] = $bj['names'];
+
+          return header("Location: ../index.php");
       }
+      header("Location: ../admin/index.php");
+        echo mysqli_error($this->conn);
+    }
+  }
+
+    function createuser($name, $email, $address, $phone, $password){
+      $pass = md5($password);
+
+      $ins = "INSERT INTO customers(`fullname`, `email`, `address`, `phone`, `password`) VALUES ('$name', '$email', '$address', '$phone', '$pass')";
+      if(mysqli_query($this->conn, $ins)){
+
+        header("Location: ../admin/");
+      }else{
+        echo "Something is wrong <br> ".mysqli_error($this->conn);
+      }
+
+
 
     }
 
