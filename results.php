@@ -12,12 +12,9 @@ if (!isset($_GET['search'])) {
 $drugs = $cur->search_drug($_GET['search']);
 $services = $cur->search_service($_GET['search']);
 
-$_SESSION['cart'] = array();
+// $_SESSION['cart'] = array();
 
 ?>
-<script src="includes/functions.js">
-  // sessionStorage.setItem('cart', [])
-</script>
 <div id="results">
   <div class="container">
     <div class="row">
@@ -90,7 +87,7 @@ $_SESSION['cart'] = array();
               <li><a href="#" onclick="onHtmlClick('Doctors', 1)" class="btn_listing">View on Map</a></li>
               <li>
                 <a href="#" target="_blank">Directions</a></li>
-              <li><a href="details.php?id=<?php echo $value['id'] ?>&type=drug">review</a></li>
+                <li onclick="details('<?php echo $value['id'] ?>', 'drug')"><a href="#0">review</a></li>
             </ul>
           </div>
         <?php endforeach; ?>
@@ -122,7 +119,7 @@ $_SESSION['cart'] = array();
               <li><a href="#" onclick="onHtmlClick('Doctors', 1)" class="btn_listing">View on Map</a></li>
               <li>
                 <a href="#" target="_blank">Directions</a></li>
-              <li><a href="details.php?id=<?php echo $value['id'] ?>&type=service">review</a></li>
+              <li onclick="details('<?php echo $value['id'] ?>', 'service')"><a href="#0">review</a></li>
             </ul>
           </div>
         <?php endforeach; ?>
@@ -142,5 +139,15 @@ $_SESSION['cart'] = array();
   </div>
 </div>
 
+<script>
+    var cart = JSON.parse(sessionStorage.getItem('cart'))
+    var cartNum = document.getElementById('cart').innerHTML = cart.length;
+</script>
 
 <?php include_once "includes/footer.php"; ?>
+<script src="includes/functions.js"></script>
+
+<script>
+    var cart = JSON.parse(sessionStorage.getItem('cart'))
+    var cartNum = document.getElementById('cart').innerHTML = cart.length;
+</script>

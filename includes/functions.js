@@ -23,8 +23,19 @@ function addtoCart(med, price, id) {
 
 }
 
-function remove_from_cart(params) {
-    alert('removed')
+function emptyCart(){
+    alert('Are You sure');
+}
+
+function back(){
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+    window.history.back();
+}
+
+
+function details(id, type) {
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+    window.location.href="details.php?id="+id+"&type="+type;
 }
 
 function maintain_cart_state(params) {

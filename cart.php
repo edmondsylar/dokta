@@ -13,7 +13,7 @@ if(!isset($_SESSION["loggedin"])){
     <div class="container">
         <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="#user">drugs</a></li>
+            <li onclick="back()"><a href="#0">drugs</a></li>
             <li>checkout</li>
         </ul>
     </div>

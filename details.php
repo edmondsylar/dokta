@@ -10,7 +10,7 @@ $type = $_GET['type'];
   <div class="container">
     <ul>
       <li><a href="index.php">Home</a></li>
-      <li><a href="javascript:history.go(-1)">search</a></li>
+      <li onclick="back()"><a href="#0">search</a></li>
       <li>Drug name</li>
     </ul>
   </div>
@@ -42,10 +42,8 @@ $type = $_GET['type'];
                     </figure>
                   </div>
                   <div class="col-lg-7 col-md-8">
-                    <!-- <small>Primary care - Internist</small> -->
                     <h1><?php echo $value['title']; ?></h1>
 
-                    <!-- new modifications here. -->
                     <ul class="contacts">
                       <li>
                         <h6>Address</h6>
@@ -75,37 +73,13 @@ $type = $_GET['type'];
                           </span>
 
                         </li>
-                        <li class="btn_1">
-                          <div align="center">
-                            <form method="post" style="margin:0px" action="https://payments.yo.co.ug/webexpress/">
-                              <input type="submit" name="submit" value="Purchase" style="
-                                border: none;
-                                border-radius: 0;
-                                width: 100%;
-                                height: 100%;
-                                background-color: inherit;
-                                color: #fff;
-                                /* background: #e74e84; */
-                                cursor: pointer;
-                                display: block;
-                                padding: 5px;
-                               " />
-                              <input type="hidden" name="bid" value="219" />
-                              <input type="hidden" name="currency" value="UGX" />
-                              <input type="hidden" name="amount" value="<?php echo $value['price']; ?>" />
-                              <input type="hidden" name="narrative" value="purchasing drug | <?php echo $value['title']; ?>" />
-                              <input type="hidden" name="reference" value="Medicine Purchase" />
-                              <input type="hidden" name="provider_reference_text" value="<?php echo $value['title']; ?>" />
-                              <input type="hidden" name="account" value="100712303477" />
-                              <input type="hidden" name="return" value="https://hsvug.com/services/results.php?search=" />
-                              <input type="hidden" name="prefilled_payer_email_address" value="" />
-                              <input type="hidden" name="prefilled_payer_mobile_payment_msisdn" value="" />
-                              <input type="hidden" name="prefilled_payer_names" value="" />
-                              <input type="hidden" name="abort_payment_url" value="" />
-                            </form>
-                          </div>
-                        </li>
+                        <li  style="
+                            float: right;
+                            cursor: pointer;
+                          " onClick="addtoCart('<?php echo $value['title'] ?>', '<?php echo $value['price'] ?>', '<?php echo $value['id'] ?>')">
+                          <i class="icon-cart"></i> <span class="i-name" id="<?php echo $value['id'] ?>">Add to Cart</span>
 
+                        </li>
                       </ul>
                     <?php endif; ?>
                   </div>
@@ -128,27 +102,20 @@ $type = $_GET['type'];
           </div>
         </div>
         <aside class="col-xl-4 col-lg-4" id="sidebar">
-          <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
+          <!-- <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
             <iframe src="https://maps.google.com/maps?q=<?php echo $value['address']; ?>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0" allowfullscreen></iframe>
-          </div>
+          </div> -->
 
+              Locations here
         </aside>
       </div>
     </div>
   <?php endforeach; ?>
 <?php endif; ?>
-<?php include_once "includes/foot.php"; ?>
-<script src="https://js.stripe.com/v3/"></script>
-<script type="text/javascript">
-  var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
-  stripe.redirectToCheckout({
-    // Make the id field from the Checkout Session creation API response
-    // available to this file, so you can provide it as parameter here
-    // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-    sessionId: '{{CHECKOUT_SESSION_ID}}'
-  }).then(function(result) {
-    // If `redirectToCheckout` fails due to a browser or network
-    // error, display the localized error message to your customer
-    // using `result.error.message`.
-  });
+
+<?php include_once "includes/footer.php"; ?>
+<script src="includes/functions.js"></script>
+<script>
+    var cart = JSON.parse(sessionStorage.getItem('cart'))
+    var cartNum = document.getElementById('cart').innerHTML = cart.length;
 </script>
