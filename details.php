@@ -102,9 +102,9 @@ $type = $_GET['type'];
           </div>
         </div>
         <aside class="col-xl-4 col-lg-4" id="sidebar">
-          <!-- <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
+          <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
             <iframe src="https://maps.google.com/maps?q=<?php echo $value['address']; ?>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0" allowfullscreen></iframe>
-          </div> -->
+          </div>
 
               Locations here
         </aside>
@@ -116,6 +116,7 @@ $type = $_GET['type'];
 <?php include_once "includes/footer.php"; ?>
 <script src="includes/functions.js"></script>
 <script>
+  // alert('loaded!')
     var cart = JSON.parse(sessionStorage.getItem('cart'))
     var cartNum = document.getElementById('cart').innerHTML = cart.length;
 </script>

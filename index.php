@@ -1,5 +1,6 @@
-<?php include_once "includes/head.php";
-      include_once "includes/header.php";
+<?php 
+  include_once "includes/header.php";
+  include_once "includes/head.php";
  ?>
 
  <div class="hero_home version_1">
@@ -32,5 +33,8 @@
      </form>
    </div>
  </div>
-
+<script>
+    var cart = JSON.parse(sessionStorage.getItem('cart'))
+    var cartNum = document.getElementById('cart').innerHTML = cart.length;
+</script>
 <?php include_once "includes/footer.php"; ?>
