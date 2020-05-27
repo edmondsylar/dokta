@@ -33,6 +33,7 @@
      </form>
    </div>
  </div>
+<!-- <script src="includes/javascript.js"></script> -->
 <script>
     var cart = JSON.parse(sessionStorage.getItem('cart'))
     var cartNum = document.getElementById('cart').innerHTML = cart.length;

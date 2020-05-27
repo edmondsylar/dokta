@@ -114,9 +114,21 @@ $type = $_GET['type'];
 <?php endif; ?>
 
 <?php include_once "includes/footer.php"; ?>
-<script src="includes/functions.js"></script>
 <script>
   // alert('loaded!')
-    var cart = JSON.parse(sessionStorage.getItem('cart'))
-    var cartNum = document.getElementById('cart').innerHTML = cart.length;
+    var info = JSON.parse(sessionStorage.getItem('cart'))
+    var cartNum = document.getElementById('cart').innerHTML = info.length;
+
+    function addtoCart(med, price, id){
+        var pro = { medicine: med, price: price, id: id }
+        info.push(pro);
+        document.getElementById(id).innerHTML = 'remove';
+        document.getElementById('cart').innerHTML = info.length;
+        
+        console.log(info, info.length);
+    }
+    function back(){
+          sessionStorage.setItem("cart", JSON.stringify(info));
+          window.history.back();
+      }
 </script>

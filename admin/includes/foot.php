@@ -6,5 +6,7 @@
 <script src="js/common_scripts.min.js"></script>
 <script src="js/functions.js"></script>
 
+
 </body>
 </html>
+	

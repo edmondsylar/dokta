@@ -45,3 +45,12 @@
   </div>
   <!-- /container -->
 </header>
+<script>
+  function maintain_cart_state(params) {
+      var info = JSON.parse(sessionStorage.getItem('cart'))
+      var cartNum = document.getElementById('cart').innerHTML = info.length;
+      
+      sessionStorage.setItem("cart", JSON.stringify(info));
+      window.location.href="cart.php?";
+  }
+</script>

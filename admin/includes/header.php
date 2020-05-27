@@ -32,3 +32,4 @@
   <!-- /container -->
 </header>
 <!-- /header -->
+<?php //include_once "./top.php" ?>
